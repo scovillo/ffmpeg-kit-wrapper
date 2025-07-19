@@ -16,6 +16,8 @@ git:
 
 install:
   - chmod +x ./ffmpeg-kit/android.sh
-
-script:
   - ./ffmpeg-kit/android.sh --enable-gnutls --disable-x86 --disable-x86-64 --disable-arm-v7a --api-level=21
+
+artifacts:
+  - path: ./ffmpeg-kit/android/ffmpeg-kit-android-lib/build/outputs/aar/ffmpeg-kit-release.aar
+    type: aar
