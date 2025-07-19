@@ -9,7 +9,7 @@ tasks.register("buildFfmpegKit") {
     doLast {
         exec {
             workingDir = projectDir
-            commandLine("bash", "./android.sh", "--enable-gnutls --disable-x86 --disable-x86-64 --disable-arm-v7a --api-level=21")
+            commandLine("bash", "./ffmpeg-kit/android.sh", "--enable-gnutls --disable-x86 --disable-x86-64 --disable-arm-v7a --api-level=21")
         }
     }
 }

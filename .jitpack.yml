@@ -18,4 +18,4 @@ install:
   - chmod +x android.sh
 
 script:
-  - ./android.sh --enable-gnutls --disable-x86 --disable-x86-64 --disable-arm-v7a --api-level=21
+  - ./ffmpeg-kit/android.sh --enable-gnutls --disable-x86 --disable-x86-64 --disable-arm-v7a --api-level=21
