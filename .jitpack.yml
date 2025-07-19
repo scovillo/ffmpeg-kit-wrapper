@@ -1,0 +1,21 @@
+jdk:
+  - openjdk17
+
+env:
+  ANDROID_SDK_ROOT: /opt/android/sdk
+  ANDROID_NDK_ROOT: /opt/android/ndk
+
+before_install:
+  - export ANDROID_SDK_ROOT=/opt/android/sdk
+  - export ANDROID_NDK_ROOT=/opt/android/ndk
+  - export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:$PATH
+  - yes | sdkmanager --licenses
+
+git:
+  submodules: true
+
+install:
+  - chmod +x android.sh
+
+script:
+  - ./android.sh --enable-gnutls --disable-x86 --disable-x86-64 --disable-arm-v7a --api-level=21

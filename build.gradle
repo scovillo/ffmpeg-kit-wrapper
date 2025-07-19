@@ -1,21 +1,30 @@
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '2.1.21'
+    id "maven-publish"
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
+tasks.register("buildFfmpegKit") {
+    group = "build"
+    description = "Runs android.sh release to build ffmpeg-kit"
 
-repositories {
-    mavenCentral()
+    doLast {
+        exec {
+            workingDir = projectDir
+            commandLine("bash", "./android.sh", "--enable-gnutls --disable-x86 --disable-x86-64 --disable-arm-v7a --api-level=21")
+        }
+    }
 }
 
-dependencies {
-    testImplementation 'org.jetbrains.kotlin:kotlin-test'
-}
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "io.github.scovillo"
+            artifactId = "ffmpeg-kit-android"
+            version = project.version.toString()
 
-test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(17)
+            dependsOn(tasks["buildFfmpegKit"])
+            artifact(fileTree("ffmpeg-kit/android/ffmpeg-kit-android-lib/build/outputs/aar").matching {
+                include("*.aar")
+            }.singleFile)
+        }
+    }
 }
