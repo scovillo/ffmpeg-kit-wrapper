@@ -15,7 +15,7 @@ git:
   submodules: true
 
 install:
-  - chmod +x android.sh
+  - chmod +x ./ffmpeg-kit/android.sh
 
 script:
   - ./ffmpeg-kit/android.sh --enable-gnutls --disable-x86 --disable-x86-64 --disable-arm-v7a --api-level=21
