@@ -8,8 +8,8 @@ git:
   submodules: true
 
 install:
-  - chmod +x jitpack.sh
-  - jitpack.sh
+  - chmod +x ./jitpack.sh
+  - ./jitpack.sh
 
 artifacts:
   - path: ffmpeg-kit/android/ffmpeg-kit-android-lib/build/outputs/aar/ffmpeg-kit-release.aar
